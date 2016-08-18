@@ -38,7 +38,7 @@ ENV TRAVIS_REPO_SLUG={{ repo_owner }}/{{ repo_project }}
 ENV TRAVIS_BUILD_DIR=${HOME}/build/${TRAVIS_REPO_SLUG}
 RUN git init ${TRAVIS_BUILD_DIR} \
     && cd ${TRAVIS_BUILD_DIR} \
-    && git remote add origin git@github.com:${TRAVIS_REPO_SLUG}.git \
+    && git remote add origin git@git.xpansa.com:${TRAVIS_REPO_SLUG}.git \
     && git fetch --update-head-ok -p origin \
 {% if 'pull' in revision -%}
     '+refs/{{ revision }}/head:refs/{{ revision }}'
@@ -50,7 +50,7 @@ RUN git init ${TRAVIS_BUILD_DIR} \
     && git config --global user.name "{{ git_user }}" \
 {%- if remotes %}
 {%- for remote in remotes %}
-    && git remote add {{ remote }} git@github.com:{{ remote }}/{{ repo_project }}.git \
+    && git remote add {{ remote }} git@git.xpansa.com:{{ remote }}/{{ repo_project }}.git \
 {%- endfor %}
 {%- endif %}
     && echo 1  # TODO: Migrate to '&&'.join([for])
